@@ -56,6 +56,10 @@
         <javac destdir="${classes.dir}" debug="true" srcdir="${src.dirs}" includeantruntime="false" source="1.7" target="1.7">
             <classpath refid="compile.classpath" />
         </javac>
+        <!-- Copy properties files -->
+        <copy todir="${classes.dir}">
+          <fileset dir="${src.dirs}" excludes="**/*.java" />
+        </copy>
     </target>
     
     <target name="war" depends="compile">

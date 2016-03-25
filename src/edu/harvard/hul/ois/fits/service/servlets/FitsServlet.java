@@ -118,9 +118,11 @@ public class FitsServlet extends HttpServlet {
 	  FitsWrapper fitsWrapper = null;
 	  
 	  try {
-	      logger.debug("Borrowing fits from pool");
-	      fitsWrapper = fitsWrapperPool.borrowObject();
-	      
+	      //logger.debug("Borrowing fits from pool");
+	      //fitsWrapper = fitsWrapperPool.borrowObject();
+          logger.debug("Creating a new wrapper");
+          fitsWrapper = new FitsWrapper();	      
+
 	      // To validate the object
 	      //System.out.println("T/F. Is this object valid:  "+fitsWrapper.isValid());
 	      
@@ -144,10 +146,12 @@ public class FitsServlet extends HttpServlet {
 	    		  e.getMessage());
 	      sendErrorMessageResponse(errorMessage, resp);
 	  } finally {
-	      if (fitsWrapper != null){
+	      /**
+          if (fitsWrapper != null){
 	          logger.debug("Returning FITS to pool");
 	          fitsWrapperPool.returnObject(fitsWrapper);
 	      }
+          */
 	  }
   }  
   
